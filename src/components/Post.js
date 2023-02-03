@@ -31,7 +31,7 @@ const Post = ({item, index, currentVisibleIndex}) => {
           }}
           onError={e => console.log(e)}
           resizeMode={'cover'}
-          repeat={true}
+          isLooping={true}
           paused={index !== currentVisibleIndex || !isPause}
         />
 
