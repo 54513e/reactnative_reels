@@ -126,7 +126,7 @@ const Post = ({item, index, currentVisibleIndex}) => {
             <Image
               className="h-8 w-8 rounded-full"
               source={{
-                uri: 'https://cdn.pixabay.com/photo/2022/10/19/10/06/crete-7532064_1280.jpg',
+                uri: 'https://cdn.pixabay.com/photo/2023/01/26/18/09/zebra-7746719_1280.jpg',
               }}
             />
           </TouchableOpacity>
