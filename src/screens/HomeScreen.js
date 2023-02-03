@@ -2,7 +2,8 @@ import React, { useState, useRef } from 'react'
 import { View, Dimensions, FlatList, Platform, StatusBar } from 'react-native'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 // import { hasNotch } from 'expo-device'
-
+import { useQuery } from '@apollo/client'
+import { GET_POSTS } from '../gql/Query'
 import Post from '../components/Post'
 
 // const getStatusBarHeight = () => {
@@ -15,10 +16,10 @@ import Post from '../components/Post'
 //   }
 // }
 
-const posts = []
-
 const HomeScreen = () => {
-  const [currentVisibleIndex, setCurrentVisibleIndex] = useState(null)
+    const [currentVisibleIndex, setCurrentVisibleIndex] = useState(null)
+    const { data, loading, refetch } = useQuery(GET_POSTS)
+    const posts = data?.allPosts
 
   const height =
     Dimensions.get('window').height -

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, Image, TouchableNativeFeedback, TouchableOpacity } from 'react-native'
 import { useIsFocused } from '@react-navigation/core'
-
-import Video from 'react-native-video'
+import { Video } from 'expo-av'
 import Ionicons from '@expo/vector-icons/Ionicons'
 
-const Post = ({ item, index, currentVisibleIndex }) => {
+const Post = ({item, index, currentVisibleIndex}) => {
   const [isPause, setIsPause] = useState(true)
   const isFocused = useIsFocused()
 
@@ -17,10 +16,10 @@ const Post = ({ item, index, currentVisibleIndex }) => {
 
   return (
     <TouchableNativeFeedback onPress={() => setIsPause(!isPause)}>
-      <View className="flex-1 bg-black">
+      <View className="flex-1">
         <Video
           source={{
-            uri: item.video_url,
+            uri: item.videoUrl,
           }}
           style={{
             position: 'absolute',
@@ -30,29 +29,36 @@ const Post = ({ item, index, currentVisibleIndex }) => {
             right: 0,
             borderRadius: 10,
           }}
-          onError={(e) => console.log(e)}
+          onError={e => console.log(e)}
           resizeMode={'cover'}
           repeat={true}
           paused={index !== currentVisibleIndex || !isPause}
         />
 
         {!isPause && (
-          <View className="absolute top-1/2 -translate-y-5 self-center ">
-            <Ionicons name="ios-play" size={30} color="white" style={{ opacity: 0.8 }} />
+          <View className="absolute top-1/2 -translate-y-5 self-center">
+            <Ionicons
+              name="ios-play"
+              size={30}
+              color="white"
+              style={{opacity: 0.8}}
+            />
           </View>
         )}
 
         <View className="flex-row items-center justify-center mt-5 space-x-5">
-          <Text className="text-base text-white font-bold">フォロー中</Text>
-          <Text className="text-base text-gray-200 font-bold">おすすめ</Text>
+          <Text className="text-base text-gray-200 font-bold">フォロー中</Text>
+          <Text className="text-base text-white font-bold">おすすめ</Text>
         </View>
 
         <View className="absolute bottom-5 left-3 right-14">
-          <Text className="font-bold text-white mb-2 text-base">{item.channel_name}</Text>
+          <Text className="font-bold text-white mb-2 text-base">
+            {item.channelName}
+          </Text>
           <Text className="text-white mb-2">{item.caption}</Text>
           <View className="flex-row items-center space-x-2">
             <Ionicons name="musical-notes" size={20} color="white" />
-            <Text className="text-white">{item.music_name}</Text>
+            <Text className="text-white">{item.musicName}</Text>
           </View>
         </View>
 
@@ -62,7 +68,7 @@ const Post = ({ item, index, currentVisibleIndex }) => {
               <Image
                 className="h-10 w-10 rounded-full"
                 source={{
-                  uri: 'https://placehold.jp/40/FFDF48/000000/150x150.png?text=Full%0AStack',
+                  uri: 'https://cdn.pixabay.com/photo/2023/01/26/18/09/zebra-7746719_1280.jpg',
                 }}
               />
             </View>
@@ -74,7 +80,12 @@ const Post = ({ item, index, currentVisibleIndex }) => {
           </TouchableOpacity>
           <View className="mb-5 items-center">
             <TouchableOpacity>
-              <Ionicons name="ios-heart" size={30} color="white" style={{ opacity: 0.8 }} />
+              <Ionicons
+                name="ios-heart"
+                size={30}
+                color="white"
+                style={{opacity: 0.8}}
+              />
             </TouchableOpacity>
             <Text className="text-white">100</Text>
           </View>
@@ -84,20 +95,30 @@ const Post = ({ item, index, currentVisibleIndex }) => {
                 name="ios-chatbubble-ellipses"
                 size={30}
                 color="white"
-                style={{ opacity: 0.8 }}
+                style={{opacity: 0.8}}
               />
             </TouchableOpacity>
             <Text className="text-white">200</Text>
           </View>
           <View className="mb-5 items-center">
             <TouchableOpacity>
-              <Ionicons name="ios-bookmark" size={30} color="white" style={{ opacity: 0.8 }} />
+              <Ionicons
+                name="ios-bookmark"
+                size={30}
+                color="white"
+                style={{opacity: 0.8}}
+              />
             </TouchableOpacity>
             <Text className="text-white">300</Text>
           </View>
           <View className="mb-5 items-center">
             <TouchableOpacity>
-              <Ionicons name="ios-arrow-redo" size={30} color="white" style={{ opacity: 0.8 }} />
+              <Ionicons
+                name="ios-arrow-redo"
+                size={30}
+                color="white"
+                style={{opacity: 0.8}}
+              />
             </TouchableOpacity>
             <Text className="text-white">400</Text>
           </View>
@@ -105,7 +126,7 @@ const Post = ({ item, index, currentVisibleIndex }) => {
             <Image
               className="h-8 w-8 rounded-full"
               source={{
-                uri: 'https://placehold.jp/40/FFDF48/000000/150x150.png?text=Full%0AStack',
+                uri: 'https://cdn.pixabay.com/photo/2022/10/19/10/06/crete-7532064_1280.jpg',
               }}
             />
           </TouchableOpacity>
